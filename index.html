@@ -2,9 +2,13 @@
 <html lang="si">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menul Photo Editor Pro 2026 | Full Features</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Menul Photo Editor Pro | 2026 Edition</title>
     
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0a84ff">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/1051/1051315.png">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&family=Roboto:wght@400;700&family=Bebas+Neue&family=Dancing+Script&display=swap" rel="stylesheet">
@@ -14,69 +18,69 @@
 
     <style>
         :root { --primary: #0a84ff; --bg: #000; --panel: #1c1c1e; --text: #fff; --border: rgba(255, 255, 255, 0.1); }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background: var(--bg); color: var(--text); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
 
-        header { height: 60px; background: var(--panel); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; z-index: 1000; }
-        .logo { font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 8px; font-size: 18px; }
+        header { height: 60px; background: var(--panel); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 15px; z-index: 1000; }
+        .logo { font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 8px; font-size: 16px; }
 
-        .main-app { display: grid; grid-template-columns: 80px 1fr 320px; flex: 1; height: calc(100vh - 60px); }
+        .main-app { display: grid; grid-template-columns: 70px 1fr 300px; flex: 1; height: calc(100vh - 60px); }
 
-        /* Toolbar Left */
-        .toolbar { background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; padding: 15px 0; gap: 12px; }
-        .tool-btn { width: 60px; height: 60px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; color: #888; border: none; background: transparent; font-size: 10px; transition: 0.3s; }
-        .tool-btn i { font-size: 20px; margin-bottom: 5px; }
+        /* Sidebar Navigation */
+        .toolbar { background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; padding: 10px 0; gap: 8px; }
+        .tool-btn { width: 55px; height: 55px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; color: #888; border: none; background: transparent; font-size: 9px; transition: 0.3s; }
+        .tool-btn i { font-size: 18px; margin-bottom: 4px; }
         .tool-btn.active { background: var(--primary); color: white; }
 
         /* Canvas Middle */
-        .editor-area { position: relative; display: flex; align-items: center; justify-content: center; background: #080808; overflow: hidden; flex: 1; padding: 20px; }
-        .canvas-wrap { box-shadow: 0 0 40px rgba(0,0,0,0.8); }
+        .editor-area { position: relative; display: flex; align-items: center; justify-content: center; background: #080808; overflow: hidden; flex: 1; padding: 10px; }
+        .canvas-wrap { box-shadow: 0 0 30px rgba(0,0,0,0.9); }
 
         /* Right Panel */
-        .controls-panel { background: var(--panel); border-left: 1px solid var(--border); padding: 20px; overflow-y: auto; }
-        .control-group { margin-bottom: 20px; background: #2c2c2e; padding: 15px; border-radius: 10px; }
-        .control-group h4 { font-size: 12px; text-transform: uppercase; color: var(--primary); margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 5px; }
+        .controls-panel { background: var(--panel); border-left: 1px solid var(--border); padding: 15px; overflow-y: auto; }
+        .control-group { margin-bottom: 15px; background: #2c2c2e; padding: 12px; border-radius: 10px; }
+        .control-group h4 { font-size: 11px; text-transform: uppercase; color: var(--primary); margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 5px; }
         
-        /* Grid Buttons */
-        .grid-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-        .btn-opt { padding: 10px; background: #3a3a3c; border: none; color: white; border-radius: 6px; cursor: pointer; font-size: 11px; transition: 0.2s; }
-        .btn-opt:hover { background: var(--primary); }
+        .grid-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+        .btn-opt { padding: 8px; background: #3a3a3c; border: none; color: white; border-radius: 6px; cursor: pointer; font-size: 10px; }
 
-        /* Stickers */
-        .sticker-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; font-size: 24px; text-align: center; }
-        .sticker-item { cursor: pointer; transition: 0.2s; }
-        .sticker-item:hover { transform: scale(1.3); }
+        .sticker-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; font-size: 22px; text-align: center; }
+        .sticker-item { cursor: pointer; }
 
-        /* Buttons */
-        .btn { padding: 12px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .btn { padding: 10px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold; }
         .btn-main { background: var(--primary); color: white; width: 100%; }
 
-        /* Full Screen Crop Overlay */
-        #crop-screen { position: fixed; inset: 0; background: rgba(0,0,0,0.98); display: none; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; }
-        .crop-container { width: 85%; height: 75%; background: #000; display: flex; align-items: center; justify-content: center; border: 1px solid #333; }
+        /* Crop Screen Overlay */
+        #crop-screen { position: fixed; inset: 0; background: #000; display: none; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; }
+        .crop-container { width: 90%; height: 70%; display: flex; align-items: center; justify-content: center; }
         #crop-image-target { max-width: 100%; max-height: 100%; }
 
-        input[type="range"] { accent-color: var(--primary); }
+        /* Responsive Mobile Layout */
+        @media (max-width: 768px) {
+            .main-app { grid-template-columns: 1fr; grid-template-rows: 1fr 100px 150px; }
+            .toolbar { order: 2; flex-direction: row; width: 100%; height: 70px; justify-content: space-around; border-right: none; border-top: 1px solid var(--border); }
+            .controls-panel { order: 3; width: 100%; height: 150px; border-left: none; border-top: 1px solid var(--border); }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo"><i class="fas fa-magic"></i> MENUL EDIT PRO</div>
-    <div style="display: flex; gap: 10px;">
-        <button class="btn btn-main" style="width: auto; padding: 8px 25px;" onclick="document.getElementById('imgInput').click()">UPLOAD</button>
-        <button class="btn btn-main" style="width: auto; padding: 8px 25px; background: #34c759;" onclick="downloadImage()">SAVE</button>
+    <div class="logo"><i class="fas fa-camera-retro"></i> MENUL EDIT PRO</div>
+    <div style="display: flex; gap: 8px;">
+        <button class="btn btn-main" style="width: auto; padding: 6px 15px;" onclick="document.getElementById('imgInput').click()">OPEN</button>
+        <button class="btn btn-main" style="width: auto; padding: 6px 15px; background: #34c759;" onclick="downloadImage()">SAVE</button>
     </div>
 </header>
 
 <div class="main-app">
     <nav class="toolbar">
         <button class="tool-btn active" onclick="showPanel('tune')"><i class="fas fa-sliders-h"></i>Tune</button>
-        <button class="tool-btn" onclick="showPanel('filter')"><i class="fas fa-layer-group"></i>Filters</button>
+        <button class="tool-btn" onclick="showPanel('filter')"><i class="fas fa-magic"></i>Filters</button>
         <button class="tool-btn" onclick="showPanel('text')"><i class="fas fa-font"></i>Text</button>
-        <button class="tool-btn" onclick="showPanel('sticker')"><i class="fas fa-smile"></i>Stickers</button>
+        <button class="tool-btn" onclick="showPanel('sticker')"><i class="fas fa-smile"></i>Emoji</button>
         <button class="tool-btn" onclick="openCropper()"><i class="fas fa-crop-alt"></i>Crop</button>
-        <button class="tool-btn" style="color:#ff453a;" onclick="deleteSelected()"><i class="fas fa-trash-alt"></i>Delete</button>
+        <button class="tool-btn" style="color:#ff453a;" onclick="deleteSelected()"><i class="fas fa-trash"></i>Del</button>
     </nav>
 
     <div class="editor-area">
@@ -87,9 +91,9 @@
         
         <div id="crop-screen">
             <div class="crop-container"><img id="crop-image-target"></div>
-            <div style="margin-top:20px; display: flex; gap: 15px;">
-                <button class="btn btn-main" style="width:180px;" onclick="applyCrop()">Apply Crop</button>
-                <button class="btn" style="width:180px; background:#444; color:#fff;" onclick="closeCropper()">Cancel</button>
+            <div style="margin-top:20px; display: flex; gap: 10px;">
+                <button class="btn btn-main" style="width:140px;" onclick="applyCrop()">Apply</button>
+                <button class="btn" style="width:140px; background:#444; color:#fff;" onclick="closeCropper()">Cancel</button>
             </div>
         </div>
     </div>
@@ -97,66 +101,53 @@
     <aside class="controls-panel">
         <div id="panel-tune" class="tool-panel">
             <div class="control-group">
-                <h4>Color Adjustments</h4>
-                <label style="font-size:11px;">Brightness</label>
-                <input type="range" id="brightness" min="-1" max="1" step="0.01" value="0" style="width:100%; margin-bottom:15px;">
-                <label style="font-size:11px;">Contrast</label>
-                <input type="range" id="contrast" min="-1" max="1" step="0.01" value="0" style="width:100%; margin-bottom:15px;">
-                <label style="font-size:11px;">Saturation</label>
-                <input type="range" id="saturation" min="-1" max="1" step="0.01" value="0" style="width:100%;">
+                <h4>Tune</h4>
+                <label style="font-size:10px;">Brightness</label>
+                <input type="range" id="brightness" min="-1" max="1" step="0.01" value="0" style="width:100%; margin-bottom:10px;">
+                <label style="font-size:10px;">Contrast</label>
+                <input type="range" id="contrast" min="-1" max="1" step="0.01" value="0" style="width:100%;">
             </div>
         </div>
 
         <div id="panel-filter" class="tool-panel" style="display:none;">
             <div class="control-group">
-                <h4>Pro Filters</h4>
+                <h4>Filters</h4>
                 <div class="grid-list">
                     <button class="btn-opt" onclick="applyEffect('none')">None</button>
                     <button class="btn-opt" onclick="applyEffect('grayscale')">B&W</button>
-                    <button class="btn-opt" onclick="applyEffect('sepia')">Sepia</button>
                     <button class="btn-opt" onclick="applyEffect('vintage')">Vintage</button>
-                    <button class="btn-opt" onclick="applyEffect('kodachrome')">Kodachrome</button>
-                    <button class="btn-opt" onclick="applyEffect('technicolor')">Retro</button>
-                    <button class="btn-opt" onclick="applyEffect('polaroid')">Polaroid</button>
-                    <button class="btn-opt" onclick="applyEffect('invert')">Invert</button>
+                    <button class="btn-opt" onclick="applyEffect('kodachrome')">Kodak</button>
                 </div>
             </div>
         </div>
 
         <div id="panel-text" class="tool-panel" style="display:none;">
             <div class="control-group">
-                <h4>Text Editor</h4>
-                <input type="text" id="text-input" placeholder="Type text..." style="width:100%; padding:10px; background:#111; color:white; border:1px solid #444; border-radius:5px; margin-bottom:10px;">
-                
-                <select id="font-family" style="width:100%; padding:8px; background:#111; color:white; border-radius:5px; margin-bottom:10px;">
-                    <option value="Roboto">Roboto (Clean)</option>
-                    <option value="Lobster">Lobster (Fancy)</option>
-                    <option value="Pacifico">Pacifico (Script)</option>
-                    <option value="Bebas Neue">Bebas Neue (Bold)</option>
-                    <option value="Dancing Script">Dancing Script</option>
+                <h4>Text</h4>
+                <input type="text" id="text-input" placeholder="Type..." style="width:100%; padding:8px; background:#111; color:white; border:1px solid #444; margin-bottom:8px;">
+                <select id="font-family" style="width:100%; padding:5px; margin-bottom:8px;">
+                    <option value="Roboto">Roboto</option>
+                    <option value="Lobster">Lobster</option>
+                    <option value="Pacifico">Pacifico</option>
+                    <option value="Bebas Neue">Bebas Neue</option>
                 </select>
-
-                <div style="display:flex; gap:5px; margin-bottom:10px;">
-                    <button class="btn-opt" style="flex:1" onclick="toggleStyle('bold')"><b>Bold</b></button>
-                    <button class="btn-opt" style="flex:1" onclick="toggleStyle('italic')"><i>Italic</i></button>
-                    <input type="color" id="text-color" value="#ffffff" style="flex:1; height:35px; border:none; background:none; cursor:pointer;">
+                <div style="display:flex; gap:4px; margin-bottom:8px;">
+                    <button class="btn-opt" style="flex:1" onclick="toggleStyle('bold')"><b>B</b></button>
+                    <button class="btn-opt" style="flex:1" onclick="toggleStyle('italic')"><i>I</i></button>
+                    <input type="color" id="text-color" value="#ffffff" style="flex:1; height:30px;">
                 </div>
-                <button class="btn btn-main" onclick="addText()">ADD TEXT</button>
+                <button class="btn btn-main" onclick="addText()">ADD</button>
             </div>
         </div>
 
         <div id="panel-sticker" class="tool-panel" style="display:none;">
             <div class="control-group">
-                <h4>Emoji Stickers</h4>
+                <h4>Stickers</h4>
                 <div class="sticker-grid">
                     <span class="sticker-item" onclick="addSticker('❤️')">❤️</span>
-                    <span class="sticker-item" onclick="addSticker('😂')">😂</span>
                     <span class="sticker-item" onclick="addSticker('🔥')">🔥</span>
                     <span class="sticker-item" onclick="addSticker('✨')">✨</span>
                     <span class="sticker-item" onclick="addSticker('👑')">👑</span>
-                    <span class="sticker-item" onclick="addSticker('📸')">📸</span>
-                    <span class="sticker-item" onclick="addSticker('😎')">😎</span>
-                    <span class="sticker-item" onclick="addSticker('🚀')">🚀</span>
                 </div>
             </div>
         </div>
@@ -166,23 +157,21 @@
 <script>
     let fCanvas, cropper;
 
-    // Canvas Initialize
     fCanvas = new fabric.Canvas('mainCanvas', { preserveObjectStacking: true });
 
-    // Handle Image Load & Scaled correctly for No Initial Crop
+    // Register Service Worker for PWA
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
+    }
+
+    // Image Upload
     document.getElementById('imgInput').onchange = (e) => {
         const file = e.target.files[0];
-        if(!file) return;
-
         const reader = new FileReader();
         reader.onload = (f) => {
             fabric.Image.fromURL(f.target.result, (img) => {
-                const editorArea = document.querySelector('.editor-area');
-                const maxW = editorArea.clientWidth - 40;
-                const maxH = editorArea.clientHeight - 40;
-
-                let scale = Math.min(maxW / img.width, maxH / img.height);
-                
+                const area = document.querySelector('.editor-area');
+                let scale = Math.min((area.clientWidth-20)/img.width, (area.clientHeight-20)/img.height);
                 fCanvas.clear();
                 fCanvas.setDimensions({ width: img.width * scale, height: img.height * scale });
                 img.set({ scaleX: scale, scaleY: scale, originX: 'left', originY: 'top' });
@@ -192,30 +181,21 @@
         reader.readAsDataURL(file);
     };
 
-    // --- FIXED CROP SYSTEM ---
+    // Crop System
     function openCropper() {
         if(!fCanvas.backgroundImage) return;
-        const cropTarget = document.getElementById('crop-image-target');
-        
-        // Use the original background image source for high quality crop
-        cropTarget.src = fCanvas.backgroundImage.toDataURL();
+        const target = document.getElementById('crop-image-target');
+        target.src = fCanvas.backgroundImage.toDataURL();
         document.getElementById('crop-screen').style.display = 'flex';
-
         if(cropper) cropper.destroy();
-        cropper = new Cropper(cropTarget, {
-            viewMode: 1,
-            autoCropArea: 0.8,
-            movable: true,
-            rotatable: true,
-            scalable: true
-        });
+        cropper = new Cropper(target, { viewMode: 1, autoCropArea: 0.8 });
     }
 
     function applyCrop() {
-        const croppedURL = cropper.getCroppedCanvas({ imageSmoothingQuality: 'high' }).toDataURL();
-        fabric.Image.fromURL(croppedURL, (img) => {
-            const editorArea = document.querySelector('.editor-area');
-            let scale = Math.min((editorArea.clientWidth-40)/img.width, (editorArea.clientHeight-40)/img.height);
+        const url = cropper.getCroppedCanvas().toDataURL();
+        fabric.Image.fromURL(url, (img) => {
+            const area = document.querySelector('.editor-area');
+            let scale = Math.min((area.clientWidth-20)/img.width, (area.clientHeight-20)/img.height);
             fCanvas.clear();
             fCanvas.setDimensions({ width: img.width * scale, height: img.height * scale });
             img.set({ scaleX: scale, scaleY: scale });
@@ -224,65 +204,40 @@
         });
     }
 
-    function closeCropper() {
-        document.getElementById('crop-screen').style.display = 'none';
-        if(cropper) cropper.destroy();
-    }
+    function closeCropper() { document.getElementById('crop-screen').style.display = 'none'; }
 
-    // --- TEXT & STYLING ---
+    // Features
     function addText() {
-        const text = new fabric.IText(document.getElementById('text-input').value || "Edit Me", {
-            left: 50, top: 50,
-            fontFamily: document.getElementById('font-family').value,
-            fill: document.getElementById('text-color').value,
-            fontSize: 40
+        const t = new fabric.IText(document.getElementById('text-input').value || "Text", {
+            left: 50, top: 50, fontFamily: document.getElementById('font-family').value,
+            fill: document.getElementById('text-color').value, fontSize: 35
         });
-        fCanvas.add(text).setActiveObject(text);
+        fCanvas.add(t).setActiveObject(t);
     }
 
     function toggleStyle(s) {
-        const active = fCanvas.getActiveObject();
-        if(!active || !active.isType('i-text')) return;
-        if(s === 'bold') active.set('fontWeight', active.fontWeight==='bold'?'normal':'bold');
-        if(s === 'italic') active.set('fontStyle', active.fontStyle==='italic'?'normal':'italic');
+        const obj = fCanvas.getActiveObject();
+        if(!obj) return;
+        if(s==='bold') obj.set('fontWeight', obj.fontWeight==='bold'?'normal':'bold');
+        if(s==='italic') obj.set('fontStyle', obj.fontStyle==='italic'?'normal':'italic');
         fCanvas.renderAll();
     }
 
-    function addSticker(emoji) {
-        const s = new fabric.Text(emoji, { left: 100, top: 100, fontSize: 60 });
-        fCanvas.add(s).setActiveObject(s);
+    function addSticker(e) {
+        const s = new fabric.Text(e, { left: 100, top: 100, fontSize: 50 });
+        fCanvas.add(s);
     }
 
-    // --- EFFECTS & FILTERS ---
     function applyEffect(type) {
         const img = fCanvas.backgroundImage;
         if(!img) return;
         img.filters = [];
-        if(type === 'grayscale') img.filters.push(new fabric.Image.filters.Grayscale());
-        if(type === 'sepia') img.filters.push(new fabric.Image.filters.Sepia());
-        if(type === 'vintage') img.filters.push(new fabric.Image.filters.Vintage());
-        if(type === 'kodachrome') img.filters.push(new fabric.Image.filters.Kodachrome());
-        if(type === 'technicolor') img.filters.push(new fabric.Image.filters.Technicolor());
-        if(type === 'polaroid') img.filters.push(new fabric.Image.filters.Polaroid());
-        if(type === 'invert') img.filters.push(new fabric.Image.filters.Invert());
+        if(type==='grayscale') img.filters.push(new fabric.Image.filters.Grayscale());
+        if(type==='vintage') img.filters.push(new fabric.Image.filters.Vintage());
         img.applyFilters();
         fCanvas.renderAll();
     }
 
-    function adjustColors() {
-        const img = fCanvas.backgroundImage;
-        if(!img) return;
-        img.filters = [
-            new fabric.Image.filters.Brightness({ brightness: parseFloat(document.getElementById('brightness').value) }),
-            new fabric.Image.filters.Contrast({ contrast: parseFloat(document.getElementById('contrast').value) }),
-            new fabric.Image.filters.Saturation({ saturation: parseFloat(document.getElementById('saturation').value) })
-        ];
-        img.applyFilters();
-        fCanvas.renderAll();
-    }
-    document.querySelectorAll('input[type=range]').forEach(i => i.oninput = adjustColors);
-
-    // --- UI CONTROLS ---
     function showPanel(id) {
         document.querySelectorAll('.tool-panel').forEach(p => p.style.display = 'none');
         document.getElementById('panel-' + id).style.display = 'block';
@@ -290,15 +245,11 @@
         event.currentTarget.classList.add('active');
     }
 
-    function deleteSelected() {
-        const active = fCanvas.getActiveObject();
-        if(active) fCanvas.remove(active);
-    }
-
+    function deleteSelected() { fCanvas.remove(fCanvas.getActiveObject()); }
     function downloadImage() {
         const link = document.createElement('a');
-        link.download = 'Menul_Editor_Full.png';
-        link.href = fCanvas.toDataURL({ quality: 1.0 });
+        link.download = 'menul_pro.png';
+        link.href = fCanvas.toDataURL();
         link.click();
     }
 </script>
